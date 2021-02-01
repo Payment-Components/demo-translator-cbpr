@@ -3,20 +3,16 @@
 The project is here to demonstrate how our [SDK](https://www.paymentcomponents.com/messaging-libraries/) for 
 SWIFT Message Translator works. For our demonstration we are going to use the demo SDK which can convert SWIFT MT to SWIFT MX (ISO20022) messages. 
 
-It's a simple maven project, you can download it and run it, with Java 1.8 or above.
-
-#### Overview
 This documentation describes how to incorporate the SWIFT Translator Library into your project. The SDK is written in Java.
 By following this guide you will be able to translate SWIFT MT(ISO 15022) messages to SWIFT MX(ISO 20022) messages and vice versa.
 
-#### Import library
-The first step is to import the translator library into your project.  
-The jar that you will download should look like this: swift-translator-xx.x.x.jar
+It's a simple maven project, you can download it and run it, with Java 1.8 or above.
 
-##### Import via IDE
-Import the library into your project by the regular IDE means. This process will vary depending upon your specific IDE and you should consult your documentation on how to import an external library. For example in Intellij, all that needs to be done is to import the jar file into a project.
-
-Alternatively, you can import it as a dependency
+## SDK setup
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/swift-translator/1.5.4/swift-translator-1.5.4-demo.jar) into your project by the regular IDE means. 
+This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean. 
+For example in Intellij all that needs to be done is to import the jar files into a project.
+Alternatively, you can import it as a Maven or Gradle dependency.  
 
 ##### Maven
 Define repository in the repositories section
@@ -31,7 +27,7 @@ Import the SDK
 <dependency>
   <groupId>gr.datamation</groupId>
   <artifactId>swift-translator</artifactId>
-  <version>1.5.3</version>
+  <version>1.5.4</version>
   <classifier>demo</classifier>
 </dependency>
 ```
@@ -47,45 +43,45 @@ repositories {
 ```
 Import the SDK
 ```groovy
-implementation 'gr.datamation:swift-translator:1.5.3:demo@jar'
+implementation 'gr.datamation:swift-translator:1.5.4:demo@jar'
 ```
 
 #### Supported Translations MT > MX From Message To Message
 
 | MT message | MX message |
 | --- | --- |
-| MT103 | pacs.008.001.08 |
-| MT103STP | pacs.008.001.08 |
-| MT101 | pain.001.001.09 |
-| MT202COV | pacs.009.001.08 |
-| MT202 | pacs.009.001.08 |
-| MT200 | pacs.009.001.08 |
-| MT940 | camt.053.001.08 |
-| MT950 | camt.053.001.08 |
-| MT910 | camt.054.001.08 |
-| MT900 | camt.054.001.08 |
-| MT103 (Return) | pacs.004.001.09 |
-| MT202 (Return) | pacs.004.001.09 |
-| MT942 | camt.052.001.08 |
-| MT941 | camt.052.001.08 | 
+|MT103|pacs.008.001.08|
+|MT103STP|pacs.008.001.08|
+|MT101|pain.001.001.09|
+|MT202COV|pacs.009.001.08|
+|MT202|pacs.009.001.08|
+|MT200|pacs.009.001.08|
+|MT940|camt.053.001.08|
+|MT950|camt.053.001.08|
+|MT910|camt.054.001.08|
+|MT900|camt.054.001.08|
+|MT103(Return)|pacs.004.001.09|
+|MT202(Return)|pacs.004.001.09|
+|MT942|camt.052.001.08|
+|MT941|camt.052.001.08|
 
 #### Supported Translations MX > MT From Message To Message
 
 | MX message | MT message |
 | --- | --- |
-| pacs.008.001.08 | MT103 |
+|pacs.008.001.08|MT103|
 | pacs.008.001.08.stp.eu | MT103STP |
 | pacs.009.001.08.cov | MT202COV |
 | pacs.009.001.08.core | MT202 |
-| pacs.009.001.08 | MT200 |
-| pain.001.001.09 | MT101 |
-| camt.053.001.08 | MT940 |
-| camt.054.001.08 | MT910 |
-| camt.054.001.08 | MT900 |
-| pacs.004.001.09 | MT103(Return) |
-| pacs.004.001.09 | MT202(Return) |
-| camt.052.001.08 | MT942 |
-| camt.052.001.08 | MT941 |
+|pacs.009.001.08|MT200|
+|pain.001.001.09|MT101|
+|camt.053.001.08|MT940|
+|camt.054.001.08|MT910|
+|camt.054.001.08|MT900|
+|pacs.004.001.09|MT103(Return)|
+|pacs.004.001.09|MT202(Return)|
+|camt.052.001.08|MT942|
+|camt.052.001.08|MT941|
 
 #### Instructions
 In order to translate an MT Message to MX Message and vice versa, you only need to call the library with the message that you want to translate and it automatically translates the message to the relevant format. The only restriction is that the message should be included in the table above.
@@ -103,13 +99,6 @@ public static String convertMxToMt(String mxMessage) throws InvalidMxMessageExce
 ```
 
 In case of no error, you will get the formatted translated message.
-
-Line ending
-In some cased, depending on your system, it is advised to replace the line ending of the message.
-
-```java
-message = message.replaceAll("\r\n", "\n").replaceAll("\n", "\r\n");
-```
 
 #### Multiple messages
 In some cases, an ISO2002 message could be translated to more than one MT message. In this case, the delimiter $ is added between the messages.
@@ -150,9 +139,7 @@ public class MtToMx {
                 "/INT/INTERMEDIARY\n" +
                 "/INS/CHASUS33\n" +
                 "-}{5:{MAC:00000000}{CHK:7C36CF9824B0}{TNG:}}{S:{SAC:}{COP:P}}\n";
-
-        message = message.replaceAll("\r\n", "\n")
-                .replaceAll("\n", "\r\n");
+        
         try {
             String translatedMessage = Converter.convertMtToMx(message);
             System.out.println("Translated Message is: " + translatedMessage);
@@ -257,9 +244,7 @@ public class MxToMt {
                 "        </FIToFICstmrCdtTrf>\n" +
                 "    </Document>\n" +
                 "</RequestPayload>";
-
-        message = message.replaceAll("\r\n", "\n")
-                .replaceAll("\n", "\r\n");
+                 
         try {
             String translatedMessage = Converter.convertMxToMt(message);
             System.out.println("Translated Message is: " + translatedMessage);
@@ -302,6 +287,7 @@ SwiftMessage swiftMessage = new SwiftMsgProcessor().ParseMsgStringToObject(trans
 ```
 
 #### GUI
+A GUI is embedded in the library in order to test the conversions ad-hoc.
 The jar file is executable and once you run it, a Java FX program will open which will help you to instantly translate messages.
 
 <img src="https://wiki.paymentcomponents.com/download/attachments/44597263/image2020-9-10_16-1-1.png?version=1&modificationDate=1599742864180&api=v2" />

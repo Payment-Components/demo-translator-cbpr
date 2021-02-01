@@ -6,7 +6,7 @@
 
     <groupId>com.paymentcomponents</groupId>
     <artifactId>demo-swift-translator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <repositories>
         <repository>
@@ -20,14 +20,15 @@
         <dependency>
             <groupId>gr.datamation</groupId>
             <artifactId>swift-translator</artifactId>
-            <version>1.5.3</version>
+            <version>1.5.4</version>
             <classifier>demo</classifier>
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.1.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
