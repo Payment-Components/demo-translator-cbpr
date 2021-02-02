@@ -263,7 +263,8 @@ public class MxToMt {
 #### Modify the generated message
 Once you have the translated message as text, you can use our other Financial Messaging Libraries(ISO20022 and MT) in order to create a Java Object and make any changes you want.
 
-In order to create an ISO20022 Java Object use the below code. The class FIToFICustomerCreditTransfer08 may vary depending on the ISO20022 Message Type.
+In order to create an ISO20022 Java Object use the below code. The class FIToFICustomerCreditTransfer08 may vary depending on the ISO20022 Message Type.  
+More information about CBPR+ Messages handling is available in PaymentComponents [wiki](https://wiki.paymentcomponents.com/display/SL/ISO20022+Documentation#ISO20022Documentation-CBPR+Handling).
 
 ```java
 //For non CBPR+ Messages(pain.001.001.09)        
@@ -275,8 +276,8 @@ CbprMessage cbprMessage = new CbprMessage(new BusinessApplicationHeader02(), new
 cbprMessage.parseXml(xml);
 BusinessApplicationHeader02 businessApplicationHeader02 = (BusinessApplicationHeader02) cbprMessage.getAppHdr(); 
 FIToFICustomerCreditTransfer08 fiToFICustomerCreditTransfer = (FIToFICustomerCreditTransfer08) cbprMessage.getDocument();
-In case you want to enclose the CBPR+ message under another Root Element, use the code below
 
+//In case you want to enclose the CBPR+ message under another Root Element, use the code below
 cbprMessage.encloseCbprMessage("RequestPayload"); //In case you want RequestPayload
 ```
 
