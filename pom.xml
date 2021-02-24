@@ -20,7 +20,7 @@
         <dependency>
             <groupId>gr.datamation</groupId>
             <artifactId>swift-translator</artifactId>
-            <version>1.5.4</version>
+            <version>1.5.5</version>
             <classifier>demo</classifier>
         </dependency>
 
