@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.paymentcomponents</groupId>
-    <artifactId>demo-swift-translator</artifactId>
+    <artifactId>demo-translator-cbpr</artifactId>
     <version>1.0.0</version>
 
     <repositories>
@@ -19,8 +19,8 @@
 
         <dependency>
             <groupId>gr.datamation</groupId>
-            <artifactId>swift-translator</artifactId>
-            <version>1.5.5</version>
+            <artifactId>translator-cbpr</artifactId>
+            <version>1.5.6</version>
             <classifier>demo</classifier>
         </dependency>
 

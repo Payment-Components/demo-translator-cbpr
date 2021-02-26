@@ -1,15 +1,15 @@
-# SWIFT Message Translator Demo
+# SWIFT Message Translator CBPR+ Demo
 
 The project is here to demonstrate how our [SDK](https://www.paymentcomponents.com/messaging-libraries/) for 
 SWIFT Message Translator works. For our demonstration we are going to use the demo SDK which can convert SWIFT MT to SWIFT MX (ISO20022) messages. 
 
 This documentation describes how to incorporate the SWIFT Translator Library into your project. The SDK is written in Java.
-By following this guide you will be able to translate SWIFT MT(ISO 15022) messages to SWIFT MX(ISO 20022) messages and vice versa.
+By following this guide you will be able to translate SWIFT MT(ISO 15022) messages to SWIFT MX(ISO 20022) messages and vice versa according to CBPR+ guidelines.
 
 It's a simple maven project, you can download it and run it, with Java 1.8 or above.
 
 ## SDK setup
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/swift-translator/1.5.4/swift-translator-1.5.4-demo.jar) into your project by the regular IDE means. 
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/1.5.6/translator-cbpr-1.5.6-demo.jar) into your project by the regular IDE means. 
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean. 
 For example in Intellij all that needs to be done is to import the jar files into a project.
 Alternatively, you can import it as a Maven or Gradle dependency.  
@@ -25,10 +25,10 @@ Define repository in the repositories section
 Import the SDK
 ```xml
 <dependency>
-  <groupId>gr.datamation</groupId>
-  <artifactId>swift-translator</artifactId>
-  <version>1.5.4</version>
-  <classifier>demo</classifier>
+    <groupId>gr.datamation</groupId>
+    <artifactId>translator-cbpr</artifactId>
+    <version>1.5.6</version>
+    <classifier>demo</classifier>
 </dependency>
 ```
 
@@ -43,7 +43,7 @@ repositories {
 ```
 Import the SDK
 ```groovy
-implementation 'gr.datamation:swift-translator:1.5.4:demo@jar'
+implementation 'gr.datamation:translator-cbpr:1.5.6:demo@jar'
 ```
 
 #### Supported Translations MT > MX From Message To Message
