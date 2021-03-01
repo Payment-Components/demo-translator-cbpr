@@ -70,9 +70,9 @@ implementation 'gr.datamation:translator-cbpr:1.5.6:demo@jar'
 | MX message | MT message |
 | --- | --- |
 |pacs.008.001.08|MT103|
-| pacs.008.001.08.stp.eu | MT103STP |
-| pacs.009.001.08.cov | MT202COV |
-| pacs.009.001.08.core | MT202 |
+|pacs.008.001.08.stp.eu | MT103STP |
+|pacs.009.001.08.cov | MT202COV |
+|pacs.009.001.08.core | MT202 |
 |pacs.009.001.08|MT200|
 |pain.001.001.09|MT101|
 |camt.053.001.08|MT940|
@@ -149,15 +149,6 @@ SwiftMessage swiftMessage = new SwiftMsgProcessor().ParseMsgStringToObject(trans
 In this project you can see code for all the basic manipulation of an MX message, like:
 - [Convert MT to MX](src/main/java/com/paymentcomponents/swift/translator/ConvertMTtoMX.java)
 - [Convert MX to MT](src/main/java/com/paymentcomponents/swift/translator/ConvertMXtoMT.java)
-
-### More features are included in the paid version like
-
-#### GUI
-A GUI is embedded in the library in order to test the conversions ad-hoc.
-The jar file is executable and once you run it, a Java FX program will open which will help you to instantly translate messages.  
-_Note: this needs Oracle Java 1.8 to run_ 
-
-<img src="https://wiki.paymentcomponents.com/download/attachments/44597263/image2020-9-10_16-1-1.png?version=1&modificationDate=1599742864180&api=v2" />
 
 #### Other resources
 - More information about our implementation of SWIFT MT library can be found in our demo on [PaymentComponents GitHub](https://github.com/Payment-Components/demo-swift-mt).
