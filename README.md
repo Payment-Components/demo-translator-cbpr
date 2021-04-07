@@ -1,6 +1,6 @@
 # SWIFT Message Translator CBPR+ Demo
 
-The project is here to demonstrate how our [SDK](https://www.paymentcomponents.com/messaging-libraries/) for 
+This project is part of the [FINaplo](https://finaplo.paymentcomponents.com) product and is here to demonstrate how our [SDK](https://finaplo.paymentcomponents.com/financial-messages) for
 SWIFT Message Translator works. For our demonstration we are going to use the demo SDK which can convert SWIFT MT to SWIFT MX (ISO20022) messages. 
 
 This documentation describes how to incorporate the SWIFT Translator Library into your project. The SDK is written in Java.
