@@ -3,11 +3,11 @@ package com.paymentcomponents.swift.translator;
 import gr.datamation.mx.CbprMessage;
 import gr.datamation.swift.common.SwiftMessage;
 import gr.datamation.swift.translator.cbpr.CbprTranslator;
-import gr.datamation.swift.translator.cbpr.exceptions.InvalidMtMessageException;
-import gr.datamation.swift.translator.cbpr.exceptions.InvalidMxMessageException;
 import gr.datamation.swift.translator.cbpr.interfaces.MtToMxTranslator;
 import gr.datamation.swift.translator.cbpr.translators.mt.Mt202ToPacs009;
-import gr.datamation.swift.translator.cbpr.utils.MessageValidationUtils;
+import gr.datamation.swift.translator.common.exceptions.InvalidMtMessageException;
+import gr.datamation.swift.translator.common.exceptions.InvalidMxMessageException;
+import gr.datamation.swift.translator.common.utils.MtMessageValidationUtils;
 
 public class TranslateMtToMx {
 
@@ -61,7 +61,7 @@ public class TranslateMtToMx {
             // If you do not want to use the auto-translation functionality, you have the option to provide the MT message
             // in Object format and get back the CBPR+ message in Object format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            SwiftMessage swiftMessage = MessageValidationUtils.parseAndValidateMtMessage(validMtMessage);
+            SwiftMessage swiftMessage = MtMessageValidationUtils.parseAndValidateMtMessage(validMtMessage);
             MtToMxTranslator mtToMxTranslator = new Mt202ToPacs009();
             CbprMessage mxMessage = mtToMxTranslator.translate(swiftMessage);
             System.out.println("Translated Message is: \n" + mxMessage.convertToXML());

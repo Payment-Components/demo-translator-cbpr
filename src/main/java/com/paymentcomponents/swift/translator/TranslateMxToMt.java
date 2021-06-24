@@ -4,11 +4,11 @@ import gr.datamation.mx.CbprMessage;
 import gr.datamation.swift.common.SwiftMessage;
 import gr.datamation.swift.processor.SwiftMsgProcessor;
 import gr.datamation.swift.translator.cbpr.CbprTranslator;
-import gr.datamation.swift.translator.cbpr.exceptions.InvalidMtMessageException;
-import gr.datamation.swift.translator.cbpr.exceptions.InvalidMxMessageException;
 import gr.datamation.swift.translator.cbpr.interfaces.MxToMtTranslator;
 import gr.datamation.swift.translator.cbpr.translators.mx.Pacs009ToMt202;
-import gr.datamation.swift.translator.cbpr.utils.MessageValidationUtils;
+import gr.datamation.swift.translator.cbpr.utils.CbprMessageValidationUtils;
+import gr.datamation.swift.translator.common.exceptions.InvalidMtMessageException;
+import gr.datamation.swift.translator.common.exceptions.InvalidMxMessageException;
 
 public class TranslateMxToMt {
 
@@ -62,7 +62,7 @@ public class TranslateMxToMt {
             // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
             // in Object format and get back the MT message in Object format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            CbprMessage cbprMessage = MessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
+            CbprMessage cbprMessage = CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
             MxToMtTranslator mxToMtTranslator = new Pacs009ToMt202();
             SwiftMessage mtMessage = mxToMtTranslator.translate(cbprMessage);
             System.out.println("Translated Message is: " + new SwiftMsgProcessor().BuildMsgStringFromObject(mtMessage));
