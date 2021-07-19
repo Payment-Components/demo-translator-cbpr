@@ -1,6 +1,8 @@
 package com.paymentcomponents.swift.translator;
 
 import gr.datamation.mx.CbprMessage;
+import gr.datamation.mx.message.head.BusinessApplicationHeader02;
+import gr.datamation.mx.message.pacs.FinancialInstitutionCreditTransfer08;
 import gr.datamation.swift.common.SwiftMessage;
 import gr.datamation.swift.processor.SwiftMsgProcessor;
 import gr.datamation.swift.translator.cbpr.CbprTranslator;
@@ -62,7 +64,8 @@ public class TranslateMxToMt {
             // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
             // in Object format and get back the MT message in Object format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            CbprMessage cbprMessage = CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
+            CbprMessage cbprMessage = CbprMessageValidationUtils.parseAndValidateCbprMessage(validMXMessage, BusinessApplicationHeader02.class, FinancialInstitutionCreditTransfer08.class, CbprMessage.CbprMsgType.PACS_009_CORE);
+            //or CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
             MxToMtTranslator mxToMtTranslator = new Pacs009ToMt202();
             SwiftMessage mtMessage = mxToMtTranslator.translate(cbprMessage);
             System.out.println("Translated Message is: " + new SwiftMsgProcessor().BuildMsgStringFromObject(mtMessage));
