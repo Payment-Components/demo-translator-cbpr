@@ -20,7 +20,6 @@ For example in Intellij all that needs to be done is to import the jar files int
 
 Define repository in the repositories section
 ```xml
-
 <repository>
     <id>paymentcomponents</id>
     <url>https://nexus.paymentcomponents.com/repository/public</url>
@@ -29,13 +28,21 @@ Define repository in the repositories section
 
 Import the SDK
 ```xml
-
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
     <version>3.0.0</version>
     <classifier>demo</classifier>
 </dependency>
+```
+You may need to exclude groovy if you face problems during runtime or tests
+```xml
+<exclusions>
+    <exclusion>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+    </exclusion>
+</exclusions>
 ```
 
 ### Gradle
