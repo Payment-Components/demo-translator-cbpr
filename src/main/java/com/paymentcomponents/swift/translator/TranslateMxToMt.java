@@ -44,7 +44,7 @@ public class TranslateMxToMt {
             // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
             // in text format and get back the MT message in text format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            MxToMtTranslator mxToMtTranslator = new Pacs009ToMt202();
+            MxToMtTranslator<?, ?> mxToMtTranslator = new Pacs009ToMt202();
             String mtMessage = mxToMtTranslator.translate(validMXMessage);
             System.out.println("Translated Message is: " + mtMessage);
         } catch (InvalidMxMessageException e) {
@@ -64,9 +64,10 @@ public class TranslateMxToMt {
             // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
             // in Object format and get back the MT message in Object format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            CbprMessage cbprMessage = CbprMessageValidationUtils.parseAndValidateCbprMessage(validMXMessage, BusinessApplicationHeader02.class, FinancialInstitutionCreditTransfer08.class, CbprMessage.CbprMsgType.PACS_009_CORE);
+            CbprMessage<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> cbprMessage =
+                    CbprMessageValidationUtils.parseAndValidateCbprMessage(validMXMessage, BusinessApplicationHeader02.class, FinancialInstitutionCreditTransfer08.class, CbprMessage.CbprMsgType.PACS_009_CORE);
             //or CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
-            MxToMtTranslator mxToMtTranslator = new Pacs009ToMt202();
+            MxToMtTranslator<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> mxToMtTranslator = new Pacs009ToMt202();
             SwiftMessage mtMessage = mxToMtTranslator.translate(cbprMessage);
             System.out.println("Translated Message is: " + new SwiftMsgProcessor().BuildMsgStringFromObject(mtMessage));
         } catch (InvalidMxMessageException e) {

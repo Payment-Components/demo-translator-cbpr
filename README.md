@@ -122,14 +122,14 @@ Translator classes implement the `MtToMxTranslator` or `MxToMtTranslator` interf
 `MtToMxTranslator` interface provides the following methods for both text and object format translations.
 ```java
 String translate(String swiftMtMessageText) throws Exception;
-CbprMessage translate(SwiftMessage swiftMtMessage) throws Exception;
+CbprMessage<A, D> translate(SwiftMessage swiftMtMessage) throws Exception;
 ```
 
 `MxToMtTranslator` interface provides the following methods.
 ```java
 String translate(String cbprMessageText) throws Exception;
-SwiftMessage translate(CbprMessage cbprMessage) throws Exception;
-SwiftMessage[] translateMultipleMt(CbprMessage cbprMessage) throws Exception;
+SwiftMessage translate(CbprMessage<A, D> cbprMessage) throws Exception;
+SwiftMessage[] translateMultipleMt(CbprMessage<A, D> cbprMessage) throws Exception;
 ```
 
 The method `translateMultipleMt` translates a CBPR+ message to multiple MT messages. Until now, no translation uses this method.  
@@ -155,10 +155,10 @@ Libraries ([Other Resources](#other-resources)) in order to create a Java Object
 In order to create an CBPR+ Java Object from text use the below code. The class `FIToFICustomerCreditTransfer08` may vary depending on the ISO20022 Message Type.   
 _Other message types are available [here](https://github.com/Payment-Components/demo-iso20022#supported-cbpr-message-types)_
 ```java
-CbprMessage cbprMessage = new CbprMessage(new BusinessApplicationHeader02(), new FIToFICustomerCreditTransfer08());
+CbprMessage<BusinessApplicationHeader02, FIToFICustomerCreditTransfer08> cbprMessage = new CbprMessage(new BusinessApplicationHeader02(), new FIToFICustomerCreditTransfer08());
 cbprMessage.parseXml(translatedMessageText);
-BusinessApplicationHeader02 businessApplicationHeader02 = (BusinessApplicationHeader02) cbprMessage.getAppHdr();
-FIToFICustomerCreditTransfer08 fiToFICustomerCreditTransfer = (FIToFICustomerCreditTransfer08) cbprMessage.getDocument();
+BusinessApplicationHeader02 businessApplicationHeader02 = cbprMessage.getAppHdr();
+FIToFICustomerCreditTransfer08 fiToFICustomerCreditTransfer = cbprMessage.getDocument();
 
 //In case you want to enclose the CBPR+ message under another Root Element, use the code below
 cbprMessage.encloseCbprMessage("RequestPayload"); //In case you want RequestPayload

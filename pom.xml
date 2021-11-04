@@ -21,7 +21,7 @@
             <groupId>gr.datamation</groupId>
             <artifactId>translator-cbpr</artifactId>
             <version>3.3.1</version>
-            <classifier>demo</classifier>
+            <classifier>full</classifier>
         </dependency>
 
         <dependency>

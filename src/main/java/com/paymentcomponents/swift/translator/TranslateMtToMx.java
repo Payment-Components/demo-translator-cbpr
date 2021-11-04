@@ -41,7 +41,7 @@ public class TranslateMtToMx {
             // If you do not want to use the auto-translation functionality, you have the option to provide the MT message
             // in text format and get back the CBPR+ message in text format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            MtToMxTranslator mtToMxTranslator = new Mt202ToPacs009();
+            MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
             String mxMessage = mtToMxTranslator.translate(validMtMessage);
             System.out.println("Translated Message is: \n" + mxMessage);
         } catch (InvalidMxMessageException e) {
@@ -62,8 +62,8 @@ public class TranslateMtToMx {
             // in Object format and get back the CBPR+ message in Object format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
             SwiftMessage swiftMessage = MtMessageValidationUtils.parseAndValidateMtMessage(validMtMessage);
-            MtToMxTranslator mtToMxTranslator = new Mt202ToPacs009();
-            CbprMessage mxMessage = mtToMxTranslator.translate(swiftMessage);
+            MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
+            CbprMessage<?, ?> mxMessage = mtToMxTranslator.translate(swiftMessage);
             System.out.println("Translated Message is: \n" + mxMessage.convertToXML());
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
