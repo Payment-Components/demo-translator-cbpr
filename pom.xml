@@ -20,7 +20,7 @@
         <dependency>
             <groupId>gr.datamation</groupId>
             <artifactId>translator-cbpr</artifactId>
-            <version>3.4.0</version>
+            <version>3.4.1</version>
             <classifier>demo</classifier>
         </dependency>
 
