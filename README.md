@@ -31,7 +31,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>3.4.1</version>
+    <version>3.4.2</version>
     <classifier>demo</classifier>
 </dependency>
 ```
