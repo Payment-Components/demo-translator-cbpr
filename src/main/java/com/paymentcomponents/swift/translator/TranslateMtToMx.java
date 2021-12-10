@@ -1,6 +1,7 @@
 package com.paymentcomponents.swift.translator;
 
 import gr.datamation.mx.CbprMessage;
+import gr.datamation.mx.message.pacs.FinancialInstitutionCreditTransfer08;
 import gr.datamation.swift.common.SwiftMessage;
 import gr.datamation.swift.translator.cbpr.CbprTranslator;
 import gr.datamation.swift.translator.cbpr.interfaces.MtToMxTranslator;
@@ -8,6 +9,7 @@ import gr.datamation.swift.translator.cbpr.translators.mt.Mt202ToPacs009;
 import gr.datamation.swift.translator.common.exceptions.InvalidMtMessageException;
 import gr.datamation.swift.translator.common.exceptions.InvalidMxMessageException;
 import gr.datamation.swift.translator.common.utils.MtMessageValidationUtils;
+import iso.pacs_009_001_08.Purpose2Choice;
 
 public class TranslateMtToMx {
 
@@ -64,6 +66,10 @@ public class TranslateMtToMx {
             SwiftMessage swiftMessage = MtMessageValidationUtils.parseAndValidateMtMessage(validMtMessage);
             MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
             CbprMessage<?, ?> mxMessage = mtToMxTranslator.translate(swiftMessage);
+            //In case is needed, you can add extra values in the generated object in case
+            Purpose2Choice purpose2Choice = new Purpose2Choice();
+            purpose2Choice.setCd("TEST");
+            ((FinancialInstitutionCreditTransfer08)mxMessage.getDocument()).getMessage().getCdtTrfTxInf().get(0).setPurp(purpose2Choice);
             System.out.println("Translated Message is: \n" + mxMessage.convertToXML());
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
