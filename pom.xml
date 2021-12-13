@@ -22,6 +22,12 @@
             <artifactId>translator-cbpr</artifactId>
             <version>3.4.1</version>
             <classifier>demo</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>gr.datamation</groupId>
+                    <artifactId>swift-translator</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
