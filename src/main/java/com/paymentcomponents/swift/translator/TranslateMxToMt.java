@@ -11,6 +11,7 @@ import gr.datamation.swift.translator.cbpr.translators.mx.Pacs009ToMt202;
 import gr.datamation.swift.translator.cbpr.utils.CbprMessageValidationUtils;
 import gr.datamation.swift.translator.common.exceptions.InvalidMtMessageException;
 import gr.datamation.swift.translator.common.exceptions.InvalidMxMessageException;
+import gr.datamation.swift.translator.common.utils.MtMessageValidationUtils;
 
 public class TranslateMxToMt {
 
@@ -26,7 +27,9 @@ public class TranslateMxToMt {
             // Translator auto detects the translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
             String mtMessage = CbprTranslator.translateMxToMt(validMXMessage);
-            System.out.println("Translated Message is: " + mtMessage);
+            //Validate the Translated message
+            MtMessageValidationUtils.parseAndValidateMtMessage(mtMessage);
+            System.out.println("Translated Message is: \n" + mtMessage);
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
             e.getValidationErrorList().forEach(System.out::println);
@@ -46,7 +49,9 @@ public class TranslateMxToMt {
             // In order to handle MT and CBPR+ messages, advice README.md
             MxToMtTranslator<?, ?> mxToMtTranslator = new Pacs009ToMt202();
             String mtMessage = mxToMtTranslator.translate(validMXMessage);
-            System.out.println("Translated Message is: " + mtMessage);
+            //Validate the Translated message
+            MtMessageValidationUtils.parseAndValidateMtMessage(mtMessage);
+            System.out.println("Translated Message is: \n" + mtMessage);
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
             e.getValidationErrorList().forEach(System.out::println);
@@ -69,7 +74,9 @@ public class TranslateMxToMt {
             //or CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
             MxToMtTranslator<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> mxToMtTranslator = new Pacs009ToMt202();
             SwiftMessage mtMessage = mxToMtTranslator.translate(cbprMessage);
-            System.out.println("Translated Message is: " + new SwiftMsgProcessor().BuildMsgStringFromObject(mtMessage));
+            //Validate the Translated message
+            MtMessageValidationUtils.validateMtMessage(mtMessage);
+            System.out.println("Translated Message is: \n" + new SwiftMsgProcessor().BuildMsgStringFromObject(mtMessage));
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
             e.getValidationErrorList().forEach(System.out::println);

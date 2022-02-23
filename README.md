@@ -11,7 +11,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.10.0/translator-cbpr-3.10.0-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.11.0/translator-cbpr-3.11.0-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -31,7 +31,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>3.10.0</version>
+    <version>3.11.0</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -71,7 +71,7 @@ repositories {
 
 Import the SDK
 ```groovy
-implementation 'gr.datamation:translator-cbpr:3.10.0:demo@jar'
+implementation 'gr.datamation:translator-cbpr:3.11.0:demo@jar'
 ```
 Import additional dependencies if not included in your project
 ```groovy
@@ -124,7 +124,8 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 You have the option to provide the MT or CBPR+ message and the library auto translates it to its equivalent.  
 Both input and output are in text format.  
 You need to call the following static methods of `CbprTranslator` class.  
-In case of no error, you will get the formatted translated message.
+In case of no error of the input message, you will get the formatted translated message.  
+Translated message is not validated.  
 ```java
 public static String translateMtToMx(String mtMessage) throws InvalidMxMessageException, InvalidMtMessageException
 ```
@@ -136,7 +137,10 @@ public static String translateMxToMt(String mxMessage) throws InvalidMxMessageEx
 
 If you do not want to use the auto-translation functionality, you can call directly the Translator you want.  
 In this case you need to know the exact translation mapping.  
-Translator classes implement the `MtToMxTranslator` or `MxToMtTranslator` interface.
+Translator classes implement the `MtToMxTranslator` or `MxToMtTranslator` interface.  
+The `translate(Object)`, does not validate the message.  
+The `translate(String)`, validates the message.  
+Translated message is not validated.  
 
 `MtToMxTranslator` interface provides the following methods for both text and object format translations.
 ```java
@@ -161,10 +165,15 @@ For example:
 
 ### Error Handling
 
-When you translate a message, both input and output messages are validated. For example, in a MT→MX translation, the
+When you translate a message, input message is validated. For example, in a MT→MX translation, the
 first step is to validate the MT message and we proceed to translation only if the message is valid.  
-This is the reason why both directions throw `InvalidMtMessageException` and `InvalidMxMessageException`.  
+This is the reason why this directions throws `InvalidMtMessageException`.  
+The other direction throws `InvalidMxMessageException`.  
 Both Exceptions contain a `validationErrorList` attribute which contains a description of the errors occurred.
+In order to validate the translated MT message, you can use `MtMessageValidationUtils.validateMtMessage(SwiftMessage mtMessage)`, 
+`MtMessageValidationUtils.parseAndValidateMtMessage(String message)` or any other way you prefer.  
+In order to validate the translated MX message, you can use `CbprMessageValidationUtils.parseAndValidateCbprMessage(A appHdr, D documentMessage, CbprMessage.CbprMsgType cbprXsd)` where 
+`CbprMsgType` can be retrieved from CbprMessage.extractCbprMsgType(), `CbprMessageValidationUtils.autoParseAndValidateCbprMessage(String message)` or any other way you prefer.
 
 ### Modify the generated message
 
