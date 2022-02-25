@@ -6,6 +6,7 @@ import gr.datamation.swift.common.SwiftMessage;
 import gr.datamation.swift.translator.cbpr.CbprTranslator;
 import gr.datamation.swift.translator.cbpr.interfaces.MtToMxTranslator;
 import gr.datamation.swift.translator.cbpr.translators.mt.Mt202ToPacs009;
+import gr.datamation.swift.translator.cbpr.utils.CbprMessageValidationUtils;
 import gr.datamation.swift.translator.common.exceptions.InvalidMtMessageException;
 import gr.datamation.swift.translator.common.exceptions.InvalidMxMessageException;
 import gr.datamation.swift.translator.common.utils.MtMessageValidationUtils;
@@ -25,6 +26,8 @@ public class TranslateMtToMx {
             // Translator auto detects the translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
             String mxMessage = CbprTranslator.translateMtToMx(validMtMessage);
+            //Validate the Translated message
+            CbprMessageValidationUtils.autoParseAndValidateCbprMessage(mxMessage);
             System.out.println("Translated Message is: \n" + mxMessage);
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
@@ -45,6 +48,8 @@ public class TranslateMtToMx {
             // In order to handle MT and CBPR+ messages, advice README.md
             MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
             String mxMessage = mtToMxTranslator.translate(validMtMessage);
+            //Validate the Translated message
+            CbprMessageValidationUtils.autoParseAndValidateCbprMessage(mxMessage);
             System.out.println("Translated Message is: \n" + mxMessage);
         } catch (InvalidMxMessageException e) {
             System.out.println("The following errors occurred");
@@ -66,6 +71,8 @@ public class TranslateMtToMx {
             SwiftMessage swiftMessage = MtMessageValidationUtils.parseAndValidateMtMessage(validMtMessage);
             MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
             CbprMessage<?, ?> mxMessage = mtToMxTranslator.translate(swiftMessage);
+            //Validate the Translated message, CbprMsgType can also be retrieved from mxMessage.extractCbprMsgType()
+            CbprMessageValidationUtils.parseAndValidateCbprMessage(mxMessage.getAppHdr(), mxMessage.getDocument(), CbprMessage.CbprMsgType.PACS_009_CORE);
             //In case is needed, you can add extra values in the generated object in case
             Purpose2Choice purpose2Choice = new Purpose2Choice();
             purpose2Choice.setCd("TEST");
