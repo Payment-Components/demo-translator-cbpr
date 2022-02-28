@@ -1,15 +1,15 @@
-package com.paymentcomponents.swift.translator;
+package com.paymentcomponents.converter.cbpr.demo;
 
+import gr.datamation.converter.cbpr.CbprTranslator;
+import gr.datamation.converter.cbpr.converters.mt.Mt202ToPacs009;
+import gr.datamation.converter.cbpr.interfaces.MtToMxTranslator;
+import gr.datamation.converter.cbpr.utils.CbprMessageValidationUtils;
+import gr.datamation.converter.common.exceptions.InvalidMtMessageException;
+import gr.datamation.converter.common.exceptions.InvalidMxMessageException;
+import gr.datamation.converter.common.utils.MtMessageValidationUtils;
+import gr.datamation.mt.common.SwiftMessage;
 import gr.datamation.mx.CbprMessage;
 import gr.datamation.mx.message.pacs.FinancialInstitutionCreditTransfer08;
-import gr.datamation.swift.common.SwiftMessage;
-import gr.datamation.swift.translator.cbpr.CbprTranslator;
-import gr.datamation.swift.translator.cbpr.interfaces.MtToMxTranslator;
-import gr.datamation.swift.translator.cbpr.translators.mt.Mt202ToPacs009;
-import gr.datamation.swift.translator.cbpr.utils.CbprMessageValidationUtils;
-import gr.datamation.swift.translator.common.exceptions.InvalidMtMessageException;
-import gr.datamation.swift.translator.common.exceptions.InvalidMxMessageException;
-import gr.datamation.swift.translator.common.utils.MtMessageValidationUtils;
 import iso.pacs_009_001_08.Purpose2Choice;
 
 public class TranslateMtToMx {

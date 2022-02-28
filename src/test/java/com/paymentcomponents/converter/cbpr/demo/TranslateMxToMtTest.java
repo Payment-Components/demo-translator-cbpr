@@ -1,4 +1,4 @@
-package com.paymentcomponents.swift.translator;
+package com.paymentcomponents.converter.cbpr.demo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

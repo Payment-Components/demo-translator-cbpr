@@ -1,17 +1,17 @@
-# SWIFT Message Translator CBPR+ Demo
+# Message Translator CBPR+ Demo
 
 The project is here to demonstrate how our [SDK](https://www.paymentcomponents.com/messaging-libraries/) for CBPR+
-Message Translator works. For our demonstration we are going to use the demo SDK which can translate SWIFT MT to CBPR+ messages.
+Message Translator works. For our demonstration we are going to use the demo SDK which can translate MT to CBPR+ messages.
 
 This documentation describes how to incorporate the CBPR+ Translator Library into your project. The SDK is written in Java.  
-By following this guide you will be able to translate SWIFT MT(ISO 15022) messages to CBPR+ messages
+By following this guide you will be able to translate MT(ISO 15022) messages to CBPR+ messages
 and vice versa according to CBPR+ guidelines.
 
 It's a simple maven project, you can download it and run it, with Java 1.8 or above.
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.11.0/translator-cbpr-3.11.0-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.12.0/translator-cbpr-3.12.0-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -31,7 +31,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>3.11.0</version>
+    <version>3.12.0</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -71,7 +71,7 @@ repositories {
 
 Import the SDK
 ```groovy
-implementation 'gr.datamation:translator-cbpr:3.11.0:demo@jar'
+implementation 'gr.datamation:translator-cbpr:3.12.0:demo@jar'
 ```
 Import additional dependencies if not included in your project
 ```groovy
@@ -82,22 +82,22 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 
 ## Supported MT > MX Translations
 
-| MT message    | MX message           | Translator Class     | Available in Demo |
-| ----------    | ----------           | ----------------     | :---------------: |
-| MT101         | pain.001.001.09      | Mt101ToPain001       |                   |
-| MT103         | pacs.008.001.08      | Mt103ToPacs008       |                   |
-| MT103STP      | pacs.008.001.08.stp  | Mt103STPToPacs008STP |                   |
-| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004       |                   |
-| MT200         | pacs.009.001.08.core | Mt200ToPacs009       |                   |
-| MT202         | pacs.009.001.08.core | Mt202ToPacs009       | &check;           |
-| MT202COV      | pacs.009.001.08.cov  | Mt202ToPacs009       |                   |
-| MT202(Return) | pacs.004.001.09      | Mt202ToPacs004       |                   |
-| MT900         | camt.054.001.08      | Mt900ToCamt054       |                   | 
-| MT910         | camt.054.001.08      | Mt910ToCamt054       |                   |
-| MT940         | camt.053.001.08      | Mt940ToCamt053       |                   |
-| MT941         | camt.052.001.08      | Mt941ToCamt052       |                   |
-| MT942         | camt.052.001.08      | Mt942ToCamt052       |                   |
-| MT950         | camt.053.001.08      | Mt950ToCamt053       |                   |
+| MT message    | MX message           | Translator Class | Available in Demo |
+| ----------    | ----------           |------------------|:-----------------:|
+| MT101         | pain.001.001.09      | Mt101ToPain001   |                   |
+| MT103         | pacs.008.001.08      | Mt103ToPacs008   |                   |
+| MT103STP      | pacs.008.001.08.stp  | Mt103ToPacs008   |                   |
+| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004   |                   |
+| MT200         | pacs.009.001.08.core | Mt200ToPacs009   |                   |
+| MT202         | pacs.009.001.08.core | Mt202ToPacs009   |      &check;      |
+| MT202COV      | pacs.009.001.08.cov  | Mt202ToPacs009   |                   |
+| MT202(Return) | pacs.004.001.09      | Mt202ToPacs004   |                   |
+| MT900         | camt.054.001.08      | Mt900ToCamt054   |                   | 
+| MT910         | camt.054.001.08      | Mt910ToCamt054   |                   |
+| MT940         | camt.053.001.08      | Mt940ToCamt053   |                   |
+| MT941         | camt.052.001.08      | Mt941ToCamt052   |                   |
+| MT942         | camt.052.001.08      | Mt942ToCamt052   |                   |
+| MT950         | camt.053.001.08      | Mt950ToCamt053   |                   |
 
 ## Supported MX > MT Translations
 
@@ -200,11 +200,11 @@ SwiftMessage swiftMessage = new SwiftMsgProcessor().ParseMsgStringToObject(trans
 ### Code Samples
 
 In this project you can see code for all the basic manipulation of an MT or CBPR+ message, like:
-- [Translate MT to MX](src/main/java/com/paymentcomponents/swift/translator/TranslateMtToMx.java)
-- [Translate MX to MT](src/main/java/com/paymentcomponents/swift/translator/TranslateMxToMt.java)
+- [Translate MT to MX](src/main/java/com/paymentcomponents/converter/cbpr/demo/TranslateMtToMx.java)
+- [Translate MX to MT](src/main/java/com/paymentcomponents/converter/cbpr/demo/TranslateMxToMt.java)
 
 ### Other resources
 
-- More information about our implementation of **SWIFT MT library** can be found in our demo on [PaymentComponents GitHub](https://github.com/Payment-Components/demo-swift-mt).
+- More information about our implementation of **MT library** can be found in our demo on [PaymentComponents GitHub](https://github.com/Payment-Components/demo-swift-mt).
 - More information about our implementation of **ISO20022 library** can be found in our demo on [PaymentComponents GitHub](https://github.com/Payment-Components/demo-iso20022).
 - More information about our implementation of **CBPR+ library** can be found in our demo on [PaymentComponents GitHub](https://github.com/Payment-Components/demo-iso20022#cbpr-messages).
