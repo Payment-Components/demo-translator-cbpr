@@ -86,7 +86,7 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 | ----------    | ----------           |------------------|:-----------------:|
 | MT101         | pain.001.001.09      | Mt101ToPain001   |                   |
 | MT103         | pacs.008.001.08      | Mt103ToPacs008   |                   |
-| MT103STP      | pacs.008.001.08.stp  | Mt103ToPacs008   |                   |
+| MT103STP      | pacs.008.001.08      | Mt103ToPacs008   |                   |
 | MT103(Return) | pacs.004.001.09      | Mt103ToPacs004   |                   |
 | MT200         | pacs.009.001.08.core | Mt200ToPacs009   |                   |
 | MT202         | pacs.009.001.08.core | Mt202ToPacs009   |      &check;      |
@@ -111,7 +111,7 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 | pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103    |                   |
 | pacs.004.001.09      | MT202 (Return) | Pacs004ToMt202    |                   |
 | pacs.008.001.08      | MT103          | Pacs008ToMt103    |                   |
-| pacs.008.001.08.stp  | MT103STP       | Pacs008ToMt103    |                   |
+| pacs.008.001.08.stp  | MT103          | Pacs008ToMt103    |                   |
 | pacs.009.001.08.core | MT200          | Pacs009ToMt200    |                   |
 | pacs.009.001.08.core | MT202          | Pacs009ToMt202    | &check;           |
 | pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202COV |                   |
