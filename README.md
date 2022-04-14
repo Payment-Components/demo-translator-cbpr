@@ -88,6 +88,7 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 | MT103STP      | pacs.008.001.08      | Mt103ToPacs008   |                   |
 | MT103(Return) | pacs.004.001.09      | Mt103ToPacs004   |                   |
 | MT192         | camt.056.001.08      | Mt192ToCamt056   |                   |
+| MT196         | camt.029.001.09      | Mt196ToCamt029   |                   |
 | MT202         | pacs.009.001.08.core | Mt202ToPacs009   |      &check;      |
 | MT202COV      | pacs.009.001.08.cov  | Mt202ToPacs009   |                   |
 | MT202(Return) | pacs.004.001.09      | Mt202ToPacs004   |                   |
@@ -103,6 +104,7 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 | camt.054.001.08      | MT900          | Camt054ToMt900    |                   |
 | camt.054.001.08      | MT910          | Camt054ToMt910    |                   |
 | camt.056.001.08      | MT192          | Camt056ToMt192    |                   |
+| camt.029.001.09      | MT196          | Camt029ToMt196    |                   |
 | pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103    |                   |
 | pacs.004.001.09      | MT202 (Return) | Pacs004ToMt202    |                   |
 | pacs.008.001.08      | MT103          | Pacs008ToMt103    |                   |
