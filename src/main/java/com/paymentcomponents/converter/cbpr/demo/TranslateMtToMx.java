@@ -1,7 +1,7 @@
 package com.paymentcomponents.converter.cbpr.demo;
 
 import gr.datamation.converter.cbpr.CbprTranslator;
-import gr.datamation.converter.cbpr.converters.mt.Mt202ToPacs009;
+import gr.datamation.converter.cbpr.converters.mt.Mt202Mt205ToPacs009;
 import gr.datamation.converter.cbpr.interfaces.MtToMxTranslator;
 import gr.datamation.converter.cbpr.utils.CbprMessageValidationUtils;
 import gr.datamation.converter.common.exceptions.InvalidMtMessageException;
@@ -46,7 +46,7 @@ public class TranslateMtToMx {
             // If you do not want to use the auto-translation functionality, you have the option to provide the MT message
             // in text format and get back the CBPR+ message in text format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
+            MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202Mt205ToPacs009();
             String mxMessage = mtToMxTranslator.translate(validMtMessage);
             //Validate the Translated message
             CbprMessageValidationUtils.autoParseAndValidateCbprMessage(mxMessage);
@@ -69,7 +69,7 @@ public class TranslateMtToMx {
             // in Object format and get back the CBPR+ message in Object format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
             SwiftMessage swiftMessage = MtMessageValidationUtils.parseAndValidateMtMessage(validMtMessage);
-            MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202ToPacs009();
+            MtToMxTranslator<?, ?> mtToMxTranslator = new Mt202Mt205ToPacs009();
             CbprMessage<?, ?> mxMessage = mtToMxTranslator.translate(swiftMessage);
             //Validate the Translated message, CbprMsgType can also be retrieved from mxMessage.extractCbprMsgType()
             CbprMessageValidationUtils.parseAndValidateCbprMessage(mxMessage.getAppHdr(), mxMessage.getDocument(), CbprMessage.CbprMsgType.PACS_009_CORE);

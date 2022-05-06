@@ -107,7 +107,7 @@ public class TranslateMxToMt {
             "    </To>\n" +
             "    <BizMsgIdr>BBBB/120928-FICT/JPY/430</BizMsgIdr>\n" +
             "    <MsgDefIdr>pacs.009.001.08</MsgDefIdr>\n" +
-            "    <BizSvc>swift.cbprplus.01</BizSvc>\n" +
+            "    <BizSvc>swift.cbprplus.02</BizSvc>\n" +
             "    <MktPrctc>\n" +
             "        <Regy>str1234</Regy>\n" +
             "        <Id>str1234</Id>\n" +

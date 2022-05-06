@@ -11,7 +11,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.18.0/translator-cbpr-3.18.0-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.21.1/translator-cbpr-3.21.1-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -31,7 +31,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>3.18.0</version>
+    <version>3.21.1</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -71,7 +71,7 @@ repositories {
 
 Import the SDK
 ```groovy
-implementation 'gr.datamation:translator-cbpr:3.18.0:demo@jar'
+implementation 'gr.datamation:translator-cbpr:3.21.1:demo@jar'
 ```
 Import additional dependencies if not included in your project
 ```groovy
@@ -82,35 +82,43 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 
 ## Supported MT > MX Translations
 
-| MT message    | MX message           | Translator Class | Available in Demo |
-|---------------|----------------------|------------------|:-----------------:|
-| MT103         | pacs.008.001.08      | Mt103ToPacs008   |                   |
-| MT103STP      | pacs.008.001.08      | Mt103ToPacs008   |                   |
-| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004   |                   |
-| MT192         | camt.056.001.08      | Mt192ToCamt056   |                   |
-| MT196         | camt.029.001.09      | Mt196ToCamt029   |                   |
-| MT202         | pacs.009.001.08.core | Mt202ToPacs009   |      &check;      |
-| MT202COV      | pacs.009.001.08.cov  | Mt202ToPacs009   |                   |
-| MT202(Return) | pacs.004.001.09      | Mt202ToPacs004   |                   |
-| MT900         | camt.054.001.08      | Mt900ToCamt054   |                   | 
-| MT910         | camt.054.001.08      | Mt910ToCamt054   |                   |
+| MT message    | MX message           | Translator Class     | Available in Demo |
+|---------------|----------------------|----------------------|:-----------------:|
+| MT103         | pacs.008.001.08      | Mt103ToPacs008       |                   |
+| MT103STP      | pacs.008.001.08      | Mt103ToPacs008       |                   |
+| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004       |                   |
+| MT192         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   |
+| MT292         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   |
+| MT196         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   |
+| MT296         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   |
+| MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009  |      &check;      |
+| MT202COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   |
+| MT202ADV      | pacs.009.001.08.adv  | Mt202Mt205ToPacs009  |                   |
+| MT205         | pacs.009.001.08      | Mt202Mt205ToPacs009  |                   |
+| MT202(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   |
+| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   |
+| MT900         | camt.054.001.08      | Mt900ToCamt054       |                   | 
+| MT910         | camt.054.001.08      | Mt910ToCamt054       |                   |
 
 ## Supported MX > MT Translations
 
-| MT message           | MX message     | Translator Class  | Available in Demo |
-|----------------------|----------------|-------------------| :---------------: |
-| camt.052.001.08      | MT942          | Camt052ToMt942    |                   |
-| camt.053.001.08      | MT940          | Camt053ToMt940    |                   |
-| camt.054.001.08      | MT900          | Camt054ToMt900    |                   |
-| camt.054.001.08      | MT910          | Camt054ToMt910    |                   |
-| camt.056.001.08      | MT192          | Camt056ToMt192    |                   |
-| camt.029.001.09      | MT196          | Camt029ToMt196    |                   |
-| pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103    |                   |
-| pacs.004.001.09      | MT202 (Return) | Pacs004ToMt202    |                   |
-| pacs.008.001.08      | MT103          | Pacs008ToMt103    |                   |
-| pacs.008.001.08.stp  | MT103          | Pacs008ToMt103    |                   |
-| pacs.009.001.08.core | MT202          | Pacs009ToMt202    | &check;           |
-| pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202COV |                   |
+| MT message           | MX message     | Translator Class     | Available in Demo |
+|----------------------|----------------|----------------------| :---------------: |
+| camt.029.001.09      | MT196          | Camt029ToMt196Mt296  |                   |
+| camt.029.001.09      | MT296          | Camt029ToMt196Mt296  |                   |
+| camt.052.001.08      | MT942          | Camt052ToMt942       |                   |
+| camt.053.001.08      | MT940          | Camt053ToMt940       |                   |
+| camt.054.001.08      | MT900          | Camt054ToMt900       |                   |
+| camt.054.001.08      | MT910          | Camt054ToMt910       |                   |
+| camt.056.001.08      | MT192          | Camt056ToMt192Mt292  |                   |
+| camt.056.001.08      | MT292          | Camt056ToMt192Mt292  |                   |
+| pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103       |                   |
+| pacs.004.001.09      | MT202 (Return) | Pacs004ToMt202       |                   |
+| pacs.008.001.08      | MT103          | Pacs008ToMt103       |                   |
+| pacs.008.001.08.stp  | MT103          | Pacs008ToMt103       |                   |
+| pacs.009.001.08.core | MT202          | Pacs009ToMt202       | &check;           |
+| pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202COV    |                   |
+| pacs.009.001.08.adv  | MT202ADV       | Pacs009ToMt202ADV    |                   |
 
 ## Instructions
 
