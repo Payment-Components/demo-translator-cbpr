@@ -11,7 +11,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.21.1/translator-cbpr-3.21.1-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/3.33.0/translator-cbpr-3.33.0-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -81,44 +81,51 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 ```
 
 ## Supported MT > MX Translations
-
-| MT message    | MX message           | Translator Class     | Available in Demo |
-|---------------|----------------------|----------------------|:-----------------:|
-| MT103         | pacs.008.001.08      | Mt103ToPacs008       |                   |
-| MT103STP      | pacs.008.001.08      | Mt103ToPacs008       |                   |
-| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004       |                   |
-| MT192         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   |
-| MT292         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   |
-| MT196         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   |
-| MT296         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   |
-| MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009  |      &check;      |
-| MT202COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   |
-| MT202ADV      | pacs.009.001.08.adv  | Mt202Mt205ToPacs009  |                   |
-| MT205         | pacs.009.001.08      | Mt202Mt205ToPacs009  |                   |
-| MT202(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   |
-| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   |
+| MT message    | MX message           | Translator Class     | Available in Demo | 
+| ----------    | ----------           | ----------------     | :---------------: | 
+| MT103         | pacs.004.001.09      | Mt103ToPacs004       |                   | 
+| MT103         | pacs.008.001.08      | Mt103ToPacs008       |                   | 
+| MT103STP      | pacs.008.001.08      | Mt103STPToPacs008STP |                   | 
+| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004       |                   | 
+| MT192         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   | 
+| MT292         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   | 
+| MT196         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   | 
+| MT296         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   | 
+| MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009  | &check;           | 
+| MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009  |                   | 
+| MT202COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   | 
+| MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   | 
+| MT202(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   | 
+| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   | 
+| MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009  |                   | 
+| MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   | 
+| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   | 
 | MT900         | camt.054.001.08      | Mt900ToCamt054       |                   | 
 | MT910         | camt.054.001.08      | Mt910ToCamt054       |                   |
 
 ## Supported MX > MT Translations
 
-| MT message           | MX message     | Translator Class     | Available in Demo |
-|----------------------|----------------|----------------------| :---------------: |
-| camt.029.001.09      | MT196          | Camt029ToMt196Mt296  |                   |
-| camt.029.001.09      | MT296          | Camt029ToMt196Mt296  |                   |
-| camt.052.001.08      | MT942          | Camt052ToMt942       |                   |
-| camt.053.001.08      | MT940          | Camt053ToMt940       |                   |
-| camt.054.001.08      | MT900          | Camt054ToMt900       |                   |
-| camt.054.001.08      | MT910          | Camt054ToMt910       |                   |
-| camt.056.001.08      | MT192          | Camt056ToMt192Mt292  |                   |
-| camt.056.001.08      | MT292          | Camt056ToMt192Mt292  |                   |
-| pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103       |                   |
-| pacs.004.001.09      | MT202 (Return) | Pacs004ToMt202       |                   |
-| pacs.008.001.08      | MT103          | Pacs008ToMt103       |                   |
-| pacs.008.001.08.stp  | MT103          | Pacs008ToMt103       |                   |
-| pacs.009.001.08.core | MT202          | Pacs009ToMt202       | &check;           |
-| pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202COV    |                   |
-| pacs.009.001.08.adv  | MT202ADV       | Pacs009ToMt202ADV    |                   |
+| MX message           | MT message     | Translator Class      | Available in Demo |
+| ----------           | ----------     |-----------------------| :---------------: |
+| camt.029.001.09      | MT196          | Camt029ToMt196Mt296   |                   |
+| camt.029.001.09      | MT296          | Camt029ToMt196Mt296   |                   |
+| camt.052.001.08      | MT942          | Camt052ToMt942        |                   |
+| camt.053.001.08      | MT940          | Camt053ToMt940        |                   |
+| camt.054.001.08      | MT900          | Camt054ToMt910Mt900   |                   |
+| camt.054.001.08      | MT910          | Camt054ToMt910Mt900   |                   |
+| camt.056.001.08      | MT192          | Camt056ToMt192Mt292   |                   |
+| camt.056.001.08      | MT292          | Camt056ToMt192Mt292   |                   |
+| camt.057.001.08      | MT210          | Camt057ToMt210        |                   |
+| pacs.002.001.10      | MT199          | Pacs002ToMt199Mt299   |                   |
+| pacs.002.001.10      | MT299          | Pacs002ToMt199Mt299   |                   |
+| pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103        |                   |
+| pacs.004.001.09      | MT202 (Return) | Pacs004ToMt202Mt205   |                   |
+| pacs.004.001.09      | MT205 (Return) | Pacs004ToMt202Mt205   |                   |
+| pacs.008.001.08      | MT103          | Pacs008ToMt103        |                   |
+| pacs.008.001.08.stp  | MT103          | Pacs008ToMt103        |                   |
+| pacs.009.001.08.core | MT202          | Pacs009ToMt202Mt205   | &check;           |
+| pacs.009.001.08.adv  | MT202ADV       | Pacs009ToMt202ADV     |                   |
+| pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202Mt205COV|                   |
 
 ## Instructions
 
@@ -164,6 +171,12 @@ For example:
 ```
 :56A:INTERBIC
 -}${1:F01TESTBICAXXXX1111111111}
+```
+
+Specifically for Pacs009 to Mt205 and Pacs009COV to Mt205Cov, Translators Pacs009ToMt202Mt205 and Pacs009ToMt202Mt205COV respectively, you need to use setters Pacs009ToMt202Mt205.setTranslateTo(String translateTo)  and Pacs009ToMt202Mt205COV.setTranslateTo(String translateTo) to specify that you want to translate a Pacs009 to an Mt205 or it will always be translated to an Mt202.
+```
+Pacs009ToMt202Mt205.setTranslateTo("205");
+Pacs009ToMt202Mt205COV.setTranslateTo("205");
 ```
 
 ### Error Handling
