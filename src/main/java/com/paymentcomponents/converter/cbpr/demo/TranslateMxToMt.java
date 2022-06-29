@@ -1,7 +1,7 @@
 package com.paymentcomponents.converter.cbpr.demo;
 
 import gr.datamation.converter.cbpr.CbprTranslator;
-import gr.datamation.converter.cbpr.converters.mx.Pacs009ToMt202;
+import gr.datamation.converter.cbpr.converters.mx.Pacs009ToMt202Mt205;
 import gr.datamation.converter.cbpr.interfaces.MxToMtTranslator;
 import gr.datamation.converter.cbpr.utils.CbprMessageValidationUtils;
 import gr.datamation.converter.common.exceptions.InvalidMtMessageException;
@@ -47,7 +47,7 @@ public class TranslateMxToMt {
             // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
             // in text format and get back the MT message in text format. In this case you need to know the exact translation mapping.
             // In order to handle MT and CBPR+ messages, advice README.md
-            MxToMtTranslator<?, ?> mxToMtTranslator = new Pacs009ToMt202();
+            MxToMtTranslator<?, ?> mxToMtTranslator = new Pacs009ToMt202Mt205();
             String mtMessage = mxToMtTranslator.translate(validMXMessage);
             //Validate the Translated message
             MtMessageValidationUtils.parseAndValidateMtMessage(mtMessage);
@@ -72,7 +72,7 @@ public class TranslateMxToMt {
             CbprMessage<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> cbprMessage =
                     CbprMessageValidationUtils.parseAndValidateCbprMessage(validMXMessage, BusinessApplicationHeader02.class, FinancialInstitutionCreditTransfer08.class, CbprMessage.CbprMsgType.PACS_009_CORE);
             //or CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
-            MxToMtTranslator<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> mxToMtTranslator = new Pacs009ToMt202();
+            MxToMtTranslator<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> mxToMtTranslator = new Pacs009ToMt202Mt205();
             SwiftMessage mtMessage = mxToMtTranslator.translate(cbprMessage);
             //Validate the Translated message
             MtMessageValidationUtils.validateMtMessage(mtMessage);
