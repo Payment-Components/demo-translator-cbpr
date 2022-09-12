@@ -94,14 +94,14 @@ public class TranslateMxToMt {
             "    <Fr>\n" +
             "        <FIId>\n" +
             "            <FinInstnId>\n" +
-            "                <BICFI>TESTBICY</BICFI>\n" +
+            "                <BICFI>BBBBUS33</BICFI>\n" +
             "            </FinInstnId>\n" +
             "        </FIId>\n" +
             "    </Fr>\n" +
             "    <To>\n" +
             "        <FIId>\n" +
             "            <FinInstnId>\n" +
-            "                <BICFI>TESTBICZ</BICFI>\n" +
+            "                <BICFI>CCCCJPJT</BICFI>\n" +
             "            </FinInstnId>\n" +
             "        </FIId>\n" +
             "    </To>\n" +
@@ -113,7 +113,6 @@ public class TranslateMxToMt {
             "        <Id>str1234</Id>\n" +
             "    </MktPrctc>\n" +
             "    <CreDt>2012-12-13T12:12:12+13:00</CreDt>\n" +
-            "    <CpyDplct>CODU</CpyDplct>\n" +
             "    <PssblDplct>true</PssblDplct>\n" +
             "    <Prty>NORM</Prty>\n" +
             "</AppHdr>\n" +
