@@ -2,14 +2,16 @@ package com.paymentcomponents.converter.cbpr.demo;
 
 import gr.datamation.converter.cbpr.CbprTranslator;
 import gr.datamation.converter.cbpr.converters.mx.Pacs009ToMt202Mt205;
-import gr.datamation.converter.cbpr.interfaces.MxToMtTranslator;
+import gr.datamation.converter.cbpr.interfaces.CbprToMtTranslator;
 import gr.datamation.converter.cbpr.utils.CbprMessageValidationUtils;
 import gr.datamation.converter.common.exceptions.InvalidMtMessageException;
 import gr.datamation.converter.common.exceptions.InvalidMxMessageException;
+import gr.datamation.converter.common.exceptions.StopTranslationException;
+import gr.datamation.converter.common.exceptions.TranslationUnhandledException;
 import gr.datamation.converter.common.utils.MtMessageValidationUtils;
+import gr.datamation.iso20022.cbpr.CbprMessage;
 import gr.datamation.mt.common.SwiftMessage;
 import gr.datamation.mt.processor.SwiftMsgProcessor;
-import gr.datamation.mx.CbprMessage;
 import gr.datamation.mx.message.head.BusinessApplicationHeader02;
 import gr.datamation.mx.message.pacs.FinancialInstitutionCreditTransfer08;
 
@@ -22,70 +24,101 @@ public class TranslateMxToMt {
     }
 
     public static void translatePacs009ToMt202_Auto() {
+        // You have the option to provide the CBPR+ message in text format and get back the MT message in text format.
+        // Translator auto detects the translation mapping.
+        // In order to handle MT and CBPR+ messages, advice README.md
+        String mtMessage = null;
         try {
-            // You have the option to provide the CBPR+ message in text format and get back the MT message in text format.
-            // Translator auto detects the translation mapping.
-            // In order to handle MT and CBPR+ messages, advice README.md
-            String mtMessage = CbprTranslator.translateMxToMt(validMXMessage);
-            //Validate the Translated message
+            mtMessage = CbprTranslator.translateMxToMt(validMXMessage);
+        } catch (InvalidMxMessageException e) {
+            System.out.println("CBPR+ message is invalid");
+            e.getValidationErrorList().forEach(System.out::println);
+        } catch (StopTranslationException e) {
+            System.out.println("Translation errors occurred");
+            e.getTranslationErrorList().forEach(System.out::println);
+            return;
+        } catch (TranslationUnhandledException e) {
+            System.out.println("Unexpected error occurred");
+            e.printStackTrace();
+            return;
+        }
+
+        //Validate the Translated message
+        try {
             MtMessageValidationUtils.parseAndValidateMtMessage(mtMessage);
             System.out.println("Translated Message is: \n" + mtMessage);
-        } catch (InvalidMxMessageException e) {
-            System.out.println("The following errors occurred");
-            e.getValidationErrorList().forEach(System.out::println);
         } catch (InvalidMtMessageException e) {
-            System.out.println("The following errors occurred");
+            System.out.println("MT message is invalid");
             e.getValidationErrorList().forEach(System.out::println);
-        } catch (Exception ex) {
-            System.out.println("Unexpected error occurred");
-            System.err.println(ex.getMessage());
         }
+
     }
 
     public static void translatePacs009ToMt202_ExplicitText() {
+        // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
+        // in text format and get back the MT message in text format. In this case you need to know the exact translation mapping.
+        // In order to handle MT and CBPR+ messages, advice README.md
+        String mtMessage = null;
         try {
-            // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
-            // in text format and get back the MT message in text format. In this case you need to know the exact translation mapping.
-            // In order to handle MT and CBPR+ messages, advice README.md
-            MxToMtTranslator<?, ?> mxToMtTranslator = new Pacs009ToMt202Mt205();
-            String mtMessage = mxToMtTranslator.translate(validMXMessage);
-            //Validate the Translated message
+            CbprToMtTranslator<?, ?> mxToMtTranslator = new Pacs009ToMt202Mt205();
+            mtMessage = mxToMtTranslator.translate(validMXMessage);
+        } catch (InvalidMxMessageException e) {
+            System.out.println("CBPR+ message is invalid");
+            e.getValidationErrorList().forEach(System.out::println);
+        } catch (StopTranslationException e) {
+            System.out.println("Translation errors occurred");
+            e.getTranslationErrorList().forEach(System.out::println);
+            return;
+        } catch (TranslationUnhandledException e) {
+            System.out.println("Unexpected error occurred");
+            e.printStackTrace();
+            return;
+        }
+
+        //Validate the Translated message
+        try {
             MtMessageValidationUtils.parseAndValidateMtMessage(mtMessage);
             System.out.println("Translated Message is: \n" + mtMessage);
-        } catch (InvalidMxMessageException e) {
-            System.out.println("The following errors occurred");
-            e.getValidationErrorList().forEach(System.out::println);
         } catch (InvalidMtMessageException e) {
-            System.out.println("The following errors occurred");
+            System.out.println("MT message is invalid");
             e.getValidationErrorList().forEach(System.out::println);
-        } catch (Exception ex) {
-            System.out.println("Unexpected error occurred");
-            System.err.println(ex.getMessage());
         }
+
     }
 
     public static void translatePacs009ToMt202_ExplicitObject() {
+        // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
+        // in Object format and get back the MT message in Object format. In this case you need to know the exact translation mapping.
+        // In order to handle MT and CBPR+ messages, advice README.md
+        SwiftMessage mtMessage = null;
         try {
-            // If you do not want to use the auto-translation functionality, you have the option to provide the CBPR+ message
-            // in Object format and get back the MT message in Object format. In this case you need to know the exact translation mapping.
-            // In order to handle MT and CBPR+ messages, advice README.md
-            CbprMessage<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> cbprMessage =
-                    CbprMessageValidationUtils.parseAndValidateCbprMessage(validMXMessage, BusinessApplicationHeader02.class, FinancialInstitutionCreditTransfer08.class, CbprMessage.CbprMsgType.PACS_009_CORE);
+            CbprMessage<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> cbprMessage = CbprMessageValidationUtils.parseAndValidateCbprMessage(validMXMessage, BusinessApplicationHeader02.class, FinancialInstitutionCreditTransfer08.class, CbprMessage.CbprMsgType.PACS_009_CORE);
             //or CbprMessageValidationUtils.autoParseAndValidateCbprMessage(validMXMessage);
-            MxToMtTranslator<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> mxToMtTranslator = new Pacs009ToMt202Mt205();
-            SwiftMessage mtMessage = mxToMtTranslator.translate(cbprMessage);
-            //Validate the Translated message
+            CbprToMtTranslator<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> mxToMtTranslator = new Pacs009ToMt202Mt205();
+            mtMessage = mxToMtTranslator.translate(cbprMessage);
+        } catch (InvalidMxMessageException e) {
+            System.out.println("CBPR+ message is invalid");
+            e.getValidationErrorList().forEach(System.out::println);
+        } catch (StopTranslationException e) {
+            System.out.println("Translation errors occurred");
+            e.getTranslationErrorList().forEach(System.out::println);
+            return;
+        } catch (TranslationUnhandledException e) {
+            System.out.println("Unexpected error occurred");
+            e.printStackTrace();
+            return;
+        }
+
+        //Validate the Translated message
+        try {
             MtMessageValidationUtils.validateMtMessage(mtMessage);
             System.out.println("Translated Message is: \n" + new SwiftMsgProcessor().BuildMsgStringFromObject(mtMessage));
-        } catch (InvalidMxMessageException e) {
-            System.out.println("The following errors occurred");
-            e.getValidationErrorList().forEach(System.out::println);
         } catch (InvalidMtMessageException e) {
-            System.out.println("The following errors occurred");
+            System.out.println("MT message is invalid");
             e.getValidationErrorList().forEach(System.out::println);
-        } catch (Exception ex) {
-            System.out.println("Unexpected error occurred");
-            System.err.println(ex.getMessage());
+        } catch (Exception e) {
+            System.out.println("MT message is invalid");
+            e.printStackTrace();
         }
     }
 
