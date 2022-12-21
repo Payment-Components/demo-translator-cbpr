@@ -11,7 +11,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.0.2/translator-cbpr-4.0.2-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.2.0/translator-cbpr-4.2.0-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -31,7 +31,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>4.0.2</version>
+    <version>4.2.0</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -71,7 +71,7 @@ repositories {
 
 Import the SDK
 ```groovy
-implementation 'gr.datamation:translator-cbpr:4.0.2:demo@jar'
+implementation 'gr.datamation:translator-cbpr:4.2.0:demo@jar'
 ```
 Import additional dependencies if not included in your project
 ```groovy
@@ -132,15 +132,18 @@ implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.
 ### Auto Translation
 
 You have the option to provide the MT or CBPR+ message and the library auto translates it to its equivalent.  
-Both input and output are in text format.  
+Input should be in text format.  
+Output could be either in text format or an Object.  
 You need to call the following static methods of `CbprTranslator` class.  
-In case of no error of the input message, you will get the formatted translated message.  
+In case of no error of the input message, you will get the translated message.  
 Translated message is not validated.
 ```java
 public static String translateMtToMx(String mtMessage) throws InvalidMtMessageException, StopTranslationException, TranslationUnhandledException
+public static CbprMessage translateMtToMxObject(String mtMessage) throws InvalidMtMessageException, StopTranslationException, TranslationUnhandledException
 ```
 ```java
 public static String translateMxToMt(String mxMessage) throws InvalidMxMessageException, StopTranslationException, TranslationUnhandledException
+public static SwiftMessage translateMxToMtObject(String mxMessage) throws InvalidMxMessageException, StopTranslationException, TranslationUnhandledException
 ```
 
 ### Explicit Translation
