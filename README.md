@@ -1,3 +1,7 @@
+<a id="logo" href="https://www.paymentcomponents.com" title="Payment Components" target="_blank">
+    <img loading="lazy" src="https://i.postimg.cc/yN5TNy29/LOGO-HORIZONTAL2.png" alt="Payment Components">
+</a>
+
 # Message Translator CBPR+ Demo
 
 The project is here to demonstrate how our [SDK](https://www.paymentcomponents.com/messaging-libraries/) for CBPR+
