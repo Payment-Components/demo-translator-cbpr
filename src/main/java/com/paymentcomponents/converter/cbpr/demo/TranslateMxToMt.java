@@ -33,6 +33,7 @@ public class TranslateMxToMt {
         } catch (InvalidMxMessageException e) {
             System.out.println("CBPR+ message is invalid");
             e.getValidationErrorList().forEach(System.out::println);
+            return;
         } catch (StopTranslationException e) {
             System.out.println("Translation errors occurred");
             e.getTranslationErrorList().forEach(System.out::println);
@@ -65,6 +66,7 @@ public class TranslateMxToMt {
         } catch (InvalidMxMessageException e) {
             System.out.println("CBPR+ message is invalid");
             e.getValidationErrorList().forEach(System.out::println);
+            return;
         } catch (StopTranslationException e) {
             System.out.println("Translation errors occurred");
             e.getTranslationErrorList().forEach(System.out::println);
@@ -99,6 +101,7 @@ public class TranslateMxToMt {
         } catch (InvalidMxMessageException e) {
             System.out.println("CBPR+ message is invalid");
             e.getValidationErrorList().forEach(System.out::println);
+            return;
         } catch (StopTranslationException e) {
             System.out.println("Translation errors occurred");
             e.getTranslationErrorList().forEach(System.out::println);
