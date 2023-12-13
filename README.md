@@ -15,7 +15,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.3.0/translator-cbpr-4.3.0-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.3.1/translator-cbpr-4.3.1-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -35,7 +35,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>4.3.0</version>
+    <version>4.3.1</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -48,7 +48,14 @@ Import additional dependencies if not included in your project
     <scope>compile</scope>
     <type>pom</type>
 </dependency>
-
+```
+For Java 11 or above
+```xml
+<dependency>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>jaxb2-maven-plugin</artifactId>
+    <version>2.5.0</version>
+</dependency>
 ```
 
 ### Gradle
@@ -64,13 +71,15 @@ repositories {
 
 Import the SDK
 ```groovy
-implementation 'gr.datamation:translator-cbpr:4.3.0:demo@jar'
+implementation 'gr.datamation:translator-cbpr:4.3.1:demo@jar'
 ```
 Import additional dependencies if not included in your project
 ```groovy
 implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.11', ext: 'pom'
-implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
-implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.1'
+```
+For Java 11 or above
+```groovy
+implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: '2.5.0'
 ```
 
 ## Supported MT > MX Translations
