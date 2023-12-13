@@ -83,27 +83,27 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 ```
 
 ## Supported MT > MX Translations
-| MT message    | MX message           | Translator Class     | Available in Demo | 
-| ----------    | ----------           | ----------------     | :---------------: | 
-| MT103         | pacs.004.001.09      | Mt103ToPacs004       |                   | 
-| MT103         | pacs.008.001.08      | Mt103ToPacs008       |                   | 
-| MT103STP      | pacs.008.001.08      | Mt103STPToPacs008STP |                   | 
-| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004       |                   | 
-| MT192         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   | 
-| MT292         | camt.056.001.08      | Mt192Mt292ToCamt056  |                   | 
-| MT196         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   | 
-| MT296         | camt.029.001.09      | Mt196Mt296ToCamt029  |                   | 
-| MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009  | &check;           | 
-| MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009  |                   | 
-| MT202COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   | 
-| MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   | 
-| MT202(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   | 
-| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   | 
-| MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009  |                   | 
-| MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009  |                   | 
-| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004  |                   | 
-| MT900         | camt.054.001.08      | Mt900ToCamt054       |                   | 
-| MT910         | camt.054.001.08      | Mt910ToCamt054       |                   |
+| MT message    | MX message           | Translator Class    | Available in Demo | 
+| ----------    | ----------           |---------------------| :---------------: | 
+| MT103         | pacs.004.001.09      | Mt103ToPacs004      |                   | 
+| MT103         | pacs.008.001.08      | Mt103ToPacs008      |                   | 
+| MT103STP      | pacs.008.001.08      | Mt103ToPacs008      |                   | 
+| MT103(Return) | pacs.004.001.09      | Mt103ToPacs004      |                   | 
+| MT192         | camt.056.001.08      | Mt192Mt292ToCamt056 |                   | 
+| MT292         | camt.056.001.08      | Mt192Mt292ToCamt056 |                   | 
+| MT196         | camt.029.001.09      | Mt196Mt296ToCamt029 |                   | 
+| MT296         | camt.029.001.09      | Mt196Mt296ToCamt029 |                   | 
+| MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009 | &check;           | 
+| MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009 |                   | 
+| MT202COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009 |                   | 
+| MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009 |                   | 
+| MT202(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004 |                   | 
+| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004 |                   | 
+| MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009 |                   | 
+| MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009 |                   | 
+| MT205(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004 |                   | 
+| MT900         | camt.054.001.08      | Mt900ToCamt054      |                   | 
+| MT910         | camt.054.001.08      | Mt910ToCamt054      |                   |
 
 ## Supported MX > MT Translations
 
