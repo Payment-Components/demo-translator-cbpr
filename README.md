@@ -85,7 +85,6 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 ## Supported MT > MX Translations
 | MT message    | MX message           | Translator Class    | Available in Demo | 
 | ----------    | ----------           |---------------------| :---------------: | 
-| MT103         | pacs.004.001.09      | Mt103ToPacs004      |                   | 
 | MT103         | pacs.008.001.08      | Mt103ToPacs008      |                   | 
 | MT103STP      | pacs.008.001.08      | Mt103ToPacs008      |                   | 
 | MT103(Return) | pacs.004.001.09      | Mt103ToPacs004      |                   | 
@@ -108,7 +107,7 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 ## Supported MX > MT Translations
 
 | MX message           | MT message     | Translator Class      | Available in Demo |
-| ----------           | ----------     |-----------------------| :---------------: |
+|----------------------|----------------|-----------------------|:-----------------:|
 | camt.029.001.09      | MT196          | Camt029ToMt196Mt296   |                   |
 | camt.029.001.09      | MT296          | Camt029ToMt196Mt296   |                   |
 | camt.052.001.08      | MT942          | Camt052ToMt942        |                   |
@@ -125,9 +124,11 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 | pacs.004.001.09      | MT205 (Return) | Pacs004ToMt202Mt205   |                   |
 | pacs.008.001.08      | MT103          | Pacs008ToMt103        |                   |
 | pacs.008.001.08.stp  | MT103          | Pacs008ToMt103        |                   |
-| pacs.009.001.08.core | MT202          | Pacs009ToMt202Mt205   | &check;           |
+| pacs.009.001.08.core | MT202          | Pacs009ToMt202Mt205   |      &check;      |
+| pacs.009.001.08.core | MT205          | Pacs009ToMt202Mt205   |                   |
 | pacs.009.001.08.adv  | MT202ADV       | Pacs009ToMt202ADV     |                   |
 | pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202Mt205COV|                   |
+| pacs.009.001.08.cov  | MT205COV       | Pacs009ToMt202Mt205COV|                   |
 
 ## Instructions
 
