@@ -117,6 +117,10 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 | camt.056.001.08      | MT192          | Camt056ToMt192Mt292   |                   |
 | camt.056.001.08      | MT292          | Camt056ToMt192Mt292   |                   |
 | camt.057.001.08      | MT210          | Camt057ToMt210        |                   |
+| camt.058.001.08      | MT292          | Camt058ToMt292        |                   |
+| camt.107.001.01      | MT110          | Camt107ToMt110        |                   |
+| camt.108.001.01      | MT111          | Camt108ToMt111        |                   |
+| camt.109.001.01      | MT112          | Camt109ToMt112        |                   |
 | pacs.002.001.10      | MT199          | Pacs002ToMt199Mt299   |                   |
 | pacs.002.001.10      | MT299          | Pacs002ToMt199Mt299   |                   |
 | pacs.004.001.09      | MT103 (Return) | Pacs004ToMt103        |                   |
