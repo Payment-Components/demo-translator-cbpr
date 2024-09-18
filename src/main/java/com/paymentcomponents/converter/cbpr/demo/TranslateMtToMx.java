@@ -4,14 +4,14 @@ import gr.datamation.converter.cbpr.CbprTranslator;
 import gr.datamation.converter.cbpr.converters.mt.Mt202Mt205ToPacs009;
 import gr.datamation.converter.cbpr.interfaces.MtToCbprTranslator;
 import gr.datamation.converter.cbpr.utils.CbprMessageValidationUtils;
-import gr.datamation.converter.common.exceptions.InvalidMtMessageException;
-import gr.datamation.converter.common.exceptions.InvalidMxMessageException;
-import gr.datamation.converter.common.exceptions.StopTranslationException;
-import gr.datamation.converter.common.exceptions.TranslationUnhandledException;
+import gr.datamation.converter.common.exceptions.*;
 import gr.datamation.converter.common.utils.MtMessageValidationUtils;
 import gr.datamation.iso20022.cbpr.CbprMessage;
+import gr.datamation.iso20022.cbpr.validation.exception.CbprException;
 import gr.datamation.mt.common.SwiftMessage;
+import gr.datamation.mx.message.head.BusinessApplicationHeader02;
 import gr.datamation.mx.message.pacs.FinancialInstitutionCreditTransfer08;
+import gr.datamation.validation.error.ValidationErrorList;
 import xsd.pacs_009_001_08.Purpose2Choice;
 
 import javax.xml.bind.JAXBException;
@@ -20,9 +20,10 @@ import java.io.UnsupportedEncodingException;
 public class TranslateMtToMx {
 
     public static void main(String... args) {
-        translateMt202ToPacs009_Auto();
-        translateMt202ToPacs009_ExplicitText();
-        translateMt202ToPacs009_ExplicitObject();
+//        translateMt202ToPacs009_Auto();
+//        translateMt202ToPacs009_ExplicitText();
+//        translateMt202ToPacs009_ExplicitObject();
+        translateMt202ToPacs009_WithErrorList();
     }
 
     public static void translateMt202ToPacs009_Auto() {
@@ -43,7 +44,6 @@ public class TranslateMtToMx {
             return;
         } catch (TranslationUnhandledException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
             return;
         }
 
@@ -76,7 +76,6 @@ public class TranslateMtToMx {
             return;
         } catch (TranslationUnhandledException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
             return;
         }
 
@@ -109,7 +108,6 @@ public class TranslateMtToMx {
             return;
         } catch (TranslationUnhandledException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
             return;
         }
 
@@ -132,7 +130,45 @@ public class TranslateMtToMx {
             System.out.println("Translated Message is: \n" + mxMessage.convertToXML());
         } catch (JAXBException | UnsupportedEncodingException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
+        }
+    }
+
+    public static void translateMt202ToPacs009_WithErrorList() {
+        // You have the option to provide the MT message in text format and get back a `TranslationResult` which includes the CBPR+ message in object and a list with errors.
+        // Translator auto detects the translation mapping.
+        // In order to handle MT and CBPR+ messages, advice README.md
+        TranslationResult<CbprMessage<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08>> translationResult;
+
+        try {
+            translationResult = CbprTranslator.translateMtToMxFull(validMtMessage);
+
+            //assert translationResult.getErrorList().get(0).getErrorCode().getErrorText().equals("T0000M");
+            //assert translationResult.getErrorList().get(0).getErrorCode().getErrorCategory().name().equals("TRUNC_R");
+            //assert translationResult.getErrorList().get(0).getErrorCode().getErrorDescription().equals("Input content is not mapped to target message.");
+        } catch (InvalidMtMessageException e) {
+            System.out.println("MT message is invalid");
+            e.getValidationErrorList().forEach(System.out::println);
+            return;
+        } catch (StopTranslationException e) {
+            System.out.println("Translation errors occurred");
+            e.getTranslationErrorList().forEach(System.out::println);
+            return;
+        } catch (TranslationUnhandledException e) {
+            System.out.println("Unexpected error occurred");
+            return;
+        }
+
+        //Validate the Translated message
+        try {
+            ValidationErrorList errorList = translationResult.getMessage().autoValidate();
+            if (!errorList.isEmpty()) {
+                System.out.println("CBPR+ message is invalid");
+                errorList.forEach(System.out::println);
+                return;
+            }
+            System.out.println("Translated Message is: \n" + translationResult.getMessage().convertToXML());
+        } catch (CbprException | UnsupportedEncodingException | JAXBException e) {
+            System.out.println("Unexpected error occurred");
         }
     }
 

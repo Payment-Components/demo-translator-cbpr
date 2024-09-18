@@ -4,10 +4,7 @@ import gr.datamation.converter.cbpr.CbprTranslator;
 import gr.datamation.converter.cbpr.converters.mx.Pacs009ToMt202Mt205;
 import gr.datamation.converter.cbpr.interfaces.CbprToMtTranslator;
 import gr.datamation.converter.cbpr.utils.CbprMessageValidationUtils;
-import gr.datamation.converter.common.exceptions.InvalidMtMessageException;
-import gr.datamation.converter.common.exceptions.InvalidMxMessageException;
-import gr.datamation.converter.common.exceptions.StopTranslationException;
-import gr.datamation.converter.common.exceptions.TranslationUnhandledException;
+import gr.datamation.converter.common.exceptions.*;
 import gr.datamation.converter.common.utils.MtMessageValidationUtils;
 import gr.datamation.iso20022.cbpr.CbprMessage;
 import gr.datamation.mt.common.SwiftMessage;
@@ -15,12 +12,16 @@ import gr.datamation.mt.processor.SwiftMsgProcessor;
 import gr.datamation.mx.message.head.BusinessApplicationHeader02;
 import gr.datamation.mx.message.pacs.FinancialInstitutionCreditTransfer08;
 
+import javax.xml.bind.JAXBException;
+import java.io.UnsupportedEncodingException;
+
 public class TranslateMxToMt {
 
     public static void main(String... args) {
         translatePacs009ToMt202_Auto();
         translatePacs009ToMt202_ExplicitText();
         translatePacs009ToMt202_ExplicitObject();
+        translatePacs009ToMt202_WithErrorList();
     }
 
     public static void translatePacs009ToMt202_Auto() {
@@ -40,7 +41,6 @@ public class TranslateMxToMt {
             return;
         } catch (TranslationUnhandledException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
             return;
         }
 
@@ -73,7 +73,6 @@ public class TranslateMxToMt {
             return;
         } catch (TranslationUnhandledException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
             return;
         }
 
@@ -108,7 +107,6 @@ public class TranslateMxToMt {
             return;
         } catch (TranslationUnhandledException e) {
             System.out.println("Unexpected error occurred");
-            e.printStackTrace();
             return;
         }
 
@@ -121,9 +119,50 @@ public class TranslateMxToMt {
             e.getValidationErrorList().forEach(System.out::println);
         } catch (Exception e) {
             System.out.println("MT message is invalid");
-            e.printStackTrace();
         }
     }
+
+    public static void translatePacs009ToMt202_WithErrorList() {
+        // You have the option to provide the CBPR+ message in text format and get back a `TranslationResult` which includes the MT message in object and a list with errors.
+        // Translator auto detects the translation mapping.
+        // In order to handle MT and CBPR+ messages, advice README.md
+        TranslationResult<SwiftMessage> translationResult;
+        try {
+            CbprMessage<BusinessApplicationHeader02, FinancialInstitutionCreditTransfer08> cbprMessage = CbprMessageValidationUtils.autoParseCbprMessage(validMXMessage);
+            translationResult = CbprTranslator.translateMxToMtFull(cbprMessage.convertToXML(), "O");
+
+            assert translationResult.getErrorList().get(0).getErrorCode().getErrorText().equals("T0000M");
+            assert translationResult.getErrorList().get(0).getErrorCode().getErrorCategory().name().equals("TRUNC_R");
+            assert translationResult.getErrorList().get(0).getErrorCode().getErrorDescription().equals("Input content is not mapped to target message.");
+        } catch (InvalidMxMessageException e) {
+            System.out.println("CBPR+ message is invalid");
+            e.getValidationErrorList().forEach(System.out::println);
+            return;
+        } catch (StopTranslationException e) {
+            System.out.println("Translation errors occurred");
+            e.getTranslationErrorList().forEach(System.out::println);
+            return;
+        } catch (TranslationUnhandledException e) {
+            System.out.println("Unexpected error occurred");
+            return;
+        } catch (JAXBException | UnsupportedEncodingException e) {
+            System.out.println("Error during conversion to XML");
+            return;
+        }
+
+        //Validate the Translated message
+        try {
+            MtMessageValidationUtils.validateMtMessage(translationResult.getMessage());
+            System.out.println("Translated Message is: \n" + new SwiftMsgProcessor().BuildMsgStringFromObject(translationResult.getMessage()));
+        } catch (InvalidMtMessageException e) {
+            System.out.println("MT message is invalid");
+            e.getValidationErrorList().forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("MT message is invalid");
+        }
+
+    }
+
 
     private static final String validMXMessage = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<AppHdr xmlns=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.02\">\n" +

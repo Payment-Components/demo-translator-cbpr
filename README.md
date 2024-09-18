@@ -15,7 +15,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 
 ## SDK setup
 
-Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.3.1/translator-cbpr-4.3.1-demo.jar)
+Incorporate the SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.28.0/translator-cbpr-4.28.0-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a bean.  
 For example in Intellij all that needs to be done is to import the jar files into a project. Alternatively, you can import it as a Maven or Gradle dependency.
@@ -35,7 +35,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>4.3.1</version>
+    <version>4.28.0</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -71,7 +71,7 @@ repositories {
 
 Import the SDK
 ```groovy
-implementation 'gr.datamation:translator-cbpr:4.3.1:demo@jar'
+implementation 'gr.datamation:translator-cbpr:4.28.0:demo@jar'
 ```
 Import additional dependencies if not included in your project
 ```groovy
@@ -153,6 +153,17 @@ public static String translateMxToMt(String mxMessage) throws InvalidMxMessageEx
 public static SwiftMessage translateMxToMtObject(String mxMessage) throws InvalidMxMessageException, StopTranslationException, TranslationUnhandledException
 ```
 
+In case you want to get a full truncation report, you need to call the following static method of `CbprTranslator` class.
+```java
+public TranslationResult<SwiftMessage> translateMxToMtFull(String mxMessage, String direction) throws InvalidMxMessageException, StopTranslationException, TranslationUnhandledException
+public static TranslationResult<CbprMessage> translateMtToMxFull(String mtMessage) throws InvalidMtMessageException, StopTranslationException, TranslationUnhandledException
+```
+
+`TranslationResult` has the following methods:
+- `getMessage()` - Returns the translated message in text format.
+- `getErrorList()` - Returns the list of `TranslationError` objects.
+
+
 ### Explicit Translation
 
 If you do not want to use the auto-translation functionality, you can call directly the Translator you want.  
@@ -175,6 +186,12 @@ SwiftMessage translate(CbprMessage cbprMessage) throws StopTranslationException,
 SwiftMessage[] translateMultipleMt(CbprMessage cbprMessage) throws StopTranslationException, TranslationUnhandledException;
 ```
 The method `translateMultipleMt` translates a CBPR+ message to multiple MT messages. Until now, no translation uses this method.
+
+Both `MtToCbprTranslator` and `CbprToMtTranslator` interfaces provide a method to get the translation error list.
+```java
+List<TranslationError> getTranslationErrorList();
+```
+For the structure of `TranslationError` see [Error Handling](#translation-error-list).
 
 In case that a translation uses this logic, the translation in text format will return the MT messages splitted with `$`.  
 For example:
@@ -215,6 +232,19 @@ contains a `translationErrorList`. The `TranslationError` has the structure:
 #### TranslationUnhandledException
 When there is an exception that is not known, like `NullPointerException`, an `TranslationUnhandledException` is thrown the 
 actual exception is attached as the cause.
+
+#### Translation Error List
+Each Translator class has a `translationErrorList` attribute which contains a list of `TranslationError` objects. You can access this list by calling the `getTranslationErrorList()` method of each Translator.  
+The `TranslationError` has the below structure:
+- `errorCode`  
+  - `errorText` - Mandatory field which contains the error code - e.g. `T0000T`
+  - `errorCategory` Mandatory field that contains the error category - e.g. `TRUNC_N`
+  - `errorDescription` - Mandatory field that contains a more detailed description for the error - e.g. `Field content has been truncated.` 
+- `originalFieldPath` - Optional field which contains the path of the original message - e.g. `NtryDtls/TxDtls/Refs/EndToEndId`
+- `targetFieldPath` - Optional fields that contains the path of the translated message - e.g. `Tag61`
+- `originalValue` - Optional field that contains the original value - e.g. `MUELL/FINP/RA12345`
+- `alteredValue` - Optional field that contains the altered value e.g. `MUELL/FINP/RA12+`
+
 
 ### Modify the generated message
 
