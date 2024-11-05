@@ -107,6 +107,7 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 
 | MT message    | MX message           | Translator Class    | Available in Demo | Custom Translation Rules |
 |---------------|----------------------|---------------------|:-----------------:|:------------------------:|
+| MT101         | pain.001.001.09      | Mt101ToPain001      |                   |         &check;          |
 | MT103         | pacs.008.001.08      | Mt103ToPacs008      |                   |                          |
 | MT103STP      | pacs.008.001.08      | Mt103ToPacs008      |                   |                          |
 | MT103(Return) | pacs.004.001.09      | Mt103ToPacs004      |                   |                          |
@@ -116,8 +117,9 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 | MT196         | camt.029.001.09      | Mt196Mt296ToCamt029 |                   |                          |
 | MT296         | camt.029.001.09      | Mt196Mt296ToCamt029 |                   |                          |
 | MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009 |      &check;      |                          |
+| MT202         | pacs.009.001.08.core | Mt202Mt205ToPacs009 |      &check;      |                          |
 | MT205         | pacs.009.001.08.core | Mt202Mt205ToPacs009 |                   |                          |
-| MT202COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009 |                   |                          |
+| MT200         | pacs.009.001.08      | Mt200ToPacs009      |                   |         &check;          |
 | MT205COV      | pacs.009.001.08.cov  | Mt202Mt205ToPacs009 |                   |                          |
 | MT202(Return) | pacs.004.001.09      | Mt202Mt205ToPacs004 |                   |                          |
 | MT202         | pacs.002.001.10      | Mt202Mt205ToPacs002 |                   |                          |
@@ -130,6 +132,9 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 | MT900         | camt.054.001.08      | Mt900ToCamt054      |                   |                          |
 | MT910         | camt.054.001.08      | Mt910ToCamt054      |                   |                          |
 | MT940         | camt.053.001.08      | Mt940ToCamt053      |                   |         &check;          |
+| MT941         | camt.052.001.08      | Mt941ToCamt052      |                   |         &check;          |
+| MT942         | camt.052.001.08      | Mt942ToCamt052      |                   |         &check;          |
+| MT950         | camt.053.001.08      | Mt950ToCamt053      |                   |         &check;          |
 
 ## Supported MX > MT Translations
 
@@ -137,15 +142,20 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 |----------------------|----------------|------------------------|:-----------------:|:------------------------:|
 | camt.029.001.09      | MT196          | Camt029ToMt196Mt296    |                   |                          |
 | camt.029.001.09      | MT296          | Camt029ToMt196Mt296    |                   |                          |
+| camt.052.001.08      | MT941          | Camt052ToMt941         |                   |                          |
 | camt.052.001.08      | MT942          | Camt052ToMt942         |                   |                          |
-| camt.053.001.08      | MT940          | Camt053ToMt940         |                   |                          |
-| camt.053.001.08      | MT950          | Camt053ToMt950         |                   |                          |
+| camt.053.001.08      | MT940          | Camt053ToMt940         |                   |         &check;          |
+| camt.053.001.08      | MT950          | Camt053ToMt950         |                   |         &check;          |
 | camt.054.001.08      | MT900          | Camt054ToMt910Mt900    |                   |                          |
 | camt.054.001.08      | MT910          | Camt054ToMt910Mt900    |                   |                          |
 | camt.056.001.08      | MT192          | Camt056ToMt192Mt292    |                   |                          |
 | camt.056.001.08      | MT292          | Camt056ToMt192Mt292    |                   |                          |
 | camt.057.001.08      | MT210          | Camt057ToMt210         |                   |                          |
 | camt.058.001.08      | MT292          | Camt058ToMt292         |                   |                          |
+| camt.105.001.02      | MT190          | Camt105ToMt190Mt290    |                   |                          |
+| camt.105.001.02      | MT290          | Camt105ToMt190Mt290    |                   |                          |
+| camt.106.001.02      | MT191          | Camt106ToMt191Mt291    |                   |                          |
+| camt.106.001.02      | MT291          | Camt106ToMt191Mt291    |                   |                          |
 | camt.107.001.01      | MT110          | Camt107ToMt110         |                   |                          |
 | camt.108.001.01      | MT111          | Camt108ToMt111         |                   |                          |
 | camt.109.001.01      | MT112          | Camt109ToMt112         |                   |                          |
@@ -161,8 +171,9 @@ implementation group: 'org.codehaus.mojo', name: 'jaxb2-maven-plugin', version: 
 | pacs.009.001.08.adv  | MT202ADV       | Pacs009ToMt202ADV      |                   |                          |
 | pacs.009.001.08.cov  | MT202COV       | Pacs009ToMt202Mt205COV |                   |                          |
 | pacs.009.001.08.cov  | MT205COV       | Pacs009ToMt202Mt205COV |                   |                          |
-| pacs.010.001.03      | Mt204          | Pacs010ToMt204         |                   |         &check;          |
-| pacs.010.001.03.col  | Mt204          | Pacs010ColToMt204      |                   |         &check;          |
+| pacs.010.001.03      | MT204          | Pacs010ToMt204         |                   |         &check;          |
+| pacs.010.001.03.col  | MT204          | Pacs010ColToMt204      |                   |         &check;          |
+| pain.001.001.09      | MT101          | Pacs010ColToMt204      |                   |         &check;          |
 
 ## Instructions
 
