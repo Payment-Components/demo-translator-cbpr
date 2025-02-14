@@ -18,7 +18,7 @@ It's a simple maven project, you can download it and run it, with Java 1.8 or ab
 ## SDK setup
 
 Incorporate the
-SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.34.0/translator-cbpr-4.34.0-demo.jar)
+SDK [jar](https://nexus.paymentcomponents.com/repository/public/gr/datamation/translator-cbpr/4.37.0/translator-cbpr-4.37.0-demo.jar)
 into your project by the regular IDE means.  
 This process will vary depending upon your specific IDE and you should consult your documentation on how to deploy a
 bean.  
@@ -44,7 +44,7 @@ Import the SDK
 <dependency>
     <groupId>gr.datamation</groupId>
     <artifactId>translator-cbpr</artifactId>
-    <version>4.34.0</version>
+    <version>4.37.0</version>
     <classifier>demo</classifier>
 </dependency>
 ```
@@ -88,7 +88,7 @@ repositories {
 Import the SDK
 
 ```groovy
-implementation 'gr.datamation:translator-cbpr:4.34.0:demo@jar'
+implementation 'gr.datamation:translator-cbpr:4.37.0:demo@jar'
 ```
 
 Import additional dependencies if not included in your project
