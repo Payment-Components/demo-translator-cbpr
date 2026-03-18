@@ -1,10 +1,10 @@
-<a id="logo" href="https://www.paymentcomponents.com" title="Payment Components" target="_blank">
-    <img loading="lazy" src="https://i.postimg.cc/yN5TNy29/LOGO-HORIZONTAL2.png" alt="Payment Components">
+<a id="logo" href="https://www.aciworldwide.com" title="ACI Worldwide" target="_blank">
+    <img loading="lazy" width="557" height="60" alt="ACI Worldwide Logo" src="https://github.com/user-attachments/assets/c96a7a2c-09a7-4ece-99a3-9c02ccc25846" />
 </a>
 
 # Message Translator CBPR+ Demo
 
-The project is here to demonstrate how our [SDK](https://www.paymentcomponents.com/messaging-libraries/) for CBPR+
+The project is here to demonstrate how our SDK for CBPR+
 Message Translator works. For our demonstration we are going to use the demo SDK which can translate MT to CBPR+
 messages.
 
